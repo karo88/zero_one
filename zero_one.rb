@@ -28,6 +28,13 @@ class ZeroOne
       # Is there any elegant implementation?
       finish_table.map{|item| item.last }.include?(rest)
     end
+
+    def self.how_to_finish?(rest)
+      finish_table = create_finish_table
+
+      # Is there any elegant implementation?
+      finish_table.select{|item| item.last == rest}.map{|item| item.first }
+    end
   end
 end
 
@@ -60,5 +67,15 @@ describe ZeroOne::Finisher do
   describe "rest 77 case" do
     subject { ZeroOne::Finisher.finish?(77) }
     it { should be_true }
+  end
+
+  describe "rest 3 case" do
+    subject { ZeroOne::Finisher.how_to_finish?(3) }
+    it { should include( ["S1", "S1", "S1"] ) }
+  end
+
+  describe "rest 6 case" do
+    subject { ZeroOne::Finisher.how_to_finish?(6) }
+    it { should include( ["S1", "D1", "T1"] ) }
   end
 end
