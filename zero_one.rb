@@ -12,7 +12,7 @@ class ZeroOne
       darts << ["D-BULL", 50]
       darts << ["MISS", 0]
 
-      possible_ways = darts.repeated_combination(3).to_a
+      possible_ways = darts.repeated_permutation(3).to_a
 
       # Is there any shorter implementation?
       finish_table = possible_ways.map{|possible_way|
@@ -82,5 +82,10 @@ describe ZeroOne::Finisher do
   describe "rest 1 case" do
     subject { ZeroOne::Finisher.how_to_finish?(1) }
     it { should include( ["S1"] ) }
+  end
+
+  describe "rest 150 case" do
+    subject { ZeroOne::Finisher.how_to_finish?(150) }
+    it { should include( ["S-BULL", "D-BULL", "S-BULL"] ) }
   end
 end
