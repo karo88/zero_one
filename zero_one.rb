@@ -1,6 +1,6 @@
 class ZeroOne
   module Finisher
-    def Finisher.finish?(rest)
+    def self.create_finish_table()
       darts = []
 
       (1..20).each do |i|
@@ -18,6 +18,12 @@ class ZeroOne
       finish_table  = possible_ways.map{|possible_way|
         [ possible_way.map{|dart| dart.first }, possible_way.inject(0){|sum,dart| sum + dart.last } ]
       }
+
+      finish_table
+    end
+
+    def self.finish?(rest)
+      finish_table = create_finish_table
 
       # Is there any elegant implementation?
       finish_table.map{|item| item.last }.include?(rest)
