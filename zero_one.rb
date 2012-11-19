@@ -12,7 +12,15 @@ class ZeroOne
       darts << ["D-BULL", 50]
       darts << ["MISS", 0]
 
-      darts.map{|item| item.last }.include?(rest) # Is there any elegant implementation?
+      possible_ways = darts.repeated_combination(3).to_a
+
+      # Is there any shorter implementation?
+      finish_table  = possible_ways.map{|possible_way|
+        [ possible_way.map{|dart| dart.first }, possible_way.inject(0){|sum,dart| sum + dart.last } ]
+      }
+
+      # Is there any elegant implementation?
+      finish_table.map{|item| item.last }.include?(rest)
     end
   end
 end
@@ -26,5 +34,10 @@ describe ZeroOne::Finisher do
   describe "rest 181 case" do
     subject { ZeroOne::Finisher.finish?(181) }
     it { should be_false }
+  end
+
+  describe "rest 180 case" do
+    subject { ZeroOne::Finisher.finish?(180) }
+    it { should be_true }
   end
 end
