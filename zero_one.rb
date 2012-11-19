@@ -15,7 +15,7 @@ class ZeroOne
       possible_ways = darts.repeated_combination(3).to_a
 
       # Is there any shorter implementation?
-      finish_table  = possible_ways.map{|possible_way|
+      finish_table = possible_ways.map{|possible_way|
         [ possible_way.map{|dart| dart.first }, possible_way.inject(0){|sum,dart| sum + dart.last } ]
       }
 
@@ -33,7 +33,7 @@ class ZeroOne
       finish_table = create_finish_table
 
       # Is there any elegant implementation?
-      finish_table.select{|item| item.last == rest}.map{|item| item.first }
+      finish_table.select{|item| item.last == rest}.map{|item| item.first.delete_if{|dart| dart == "MISS" } }
     end
   end
 end
@@ -77,5 +77,10 @@ describe ZeroOne::Finisher do
   describe "rest 6 case" do
     subject { ZeroOne::Finisher.how_to_finish?(6) }
     it { should include( ["S1", "D1", "T1"] ) }
+  end
+
+  describe "rest 1 case" do
+    subject { ZeroOne::Finisher.how_to_finish?(1) }
+    it { should include( ["S1"] ) }
   end
 end
