@@ -46,4 +46,19 @@ describe ZeroOne::Finisher do
     subject { ZeroOne::Finisher.finish?(180) }
     it { should be_true }
   end
+
+  describe "rest 179 case" do
+    subject { ZeroOne::Finisher.finish?(179) }
+    it { should be_false }
+  end
+
+  describe "rest 0 case" do
+    subject { ZeroOne::Finisher.finish?(0) }
+    it { should be_true }
+  end
+
+  describe "rest 77 case" do
+    subject { ZeroOne::Finisher.finish?(77) }
+    it { should be_true }
+  end
 end
