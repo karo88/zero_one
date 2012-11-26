@@ -26,7 +26,7 @@ class ZeroOne
       finish_table.map(&:last).include?(rest)
     end
 
-    def self.how_to_finish(rest)
+    def self.ways_to_finish(rest)
       finish_table = create_finish_table
 
       # Is there any elegant implementation?
@@ -67,22 +67,22 @@ describe ZeroOne::Finisher do
   end
 
   describe "rest 3 case" do
-    subject { ZeroOne::Finisher.how_to_finish(3) }
+    subject { ZeroOne::Finisher.ways_to_finish(3) }
     it { should include( ["S1", "S1", "S1"] ) }
   end
 
   describe "rest 6 case" do
-    subject { ZeroOne::Finisher.how_to_finish(6) }
+    subject { ZeroOne::Finisher.ways_to_finish(6) }
     it { should include( ["S1", "D1", "T1"] ) }
   end
 
   describe "rest 1 case" do
-    subject { ZeroOne::Finisher.how_to_finish(1) }
+    subject { ZeroOne::Finisher.ways_to_finish(1) }
     it { should include( ["S1"] ) }
   end
 
   describe "rest 150 case" do
-    subject { ZeroOne::Finisher.how_to_finish(150) }
+    subject { ZeroOne::Finisher.ways_to_finish(150) }
     it { should include( ["S-BULL", "D-BULL", "S-BULL"] ) }
   end
 end
