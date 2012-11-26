@@ -29,8 +29,8 @@ class ZeroOne
     def self.ways_to_finish(rest)
       finish_table = create_finish_table
 
-      # Is there any elegant implementation?
-      finish_table.select{|item| item.last == rest }.map{|item| item.first.reject{|dart| dart == "MISS" } }
+      ways_including_miss = finish_table.select{|item| item.last == rest }
+      ways_including_miss.map{|item| item.first.reject{|dart| dart == "MISS" } }
     end
   end
 end
