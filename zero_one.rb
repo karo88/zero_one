@@ -12,7 +12,7 @@ class ZeroOne
       darts << ["D-BULL", 50]
       darts << ["MISS", 0]
 
-      possible_ways = darts.repeated_permutation(3).to_a
+      possible_ways = darts.repeated_permutation(3)
 
       finish_table = possible_ways.map{|possible_way|
         [ possible_way.map(&:first), possible_way.map(&:last).inject(0, :+) ]
