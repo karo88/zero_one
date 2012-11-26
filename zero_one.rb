@@ -21,15 +21,14 @@ class ZeroOne
       finish_table
     end
 
+    @@finish_table = create_finish_table
+
     def self.finish?(rest)
-      finish_table = create_finish_table
-      finish_table.map(&:last).include?(rest)
+      @@finish_table.map(&:last).include?(rest)
     end
 
     def self.ways_to_finish(rest)
-      finish_table = create_finish_table
-
-      ways_including_miss = finish_table.select{|item| item.last == rest }
+      ways_including_miss = @@finish_table.select{|item| item.last == rest }
       ways_including_miss.map{|item| item.first.reject{|dart| dart == "MISS" } }
     end
   end
