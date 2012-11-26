@@ -14,9 +14,8 @@ class ZeroOne
 
       possible_ways = darts.repeated_permutation(3).to_a
 
-      # Is there any shorter implementation?
       finish_table = possible_ways.map{|possible_way|
-        [ possible_way.map{|dart| dart.first }, possible_way.inject(0){|sum,dart| sum + dart.last } ]
+        [ possible_way.map(&:first), possible_way.map(&:last).inject(0, :+) ]
       }
 
       finish_table
@@ -24,16 +23,14 @@ class ZeroOne
 
     def self.finish?(rest)
       finish_table = create_finish_table
-
-      # Is there any elegant implementation?
-      finish_table.map{|item| item.last }.include?(rest)
+      finish_table.map(&:last).include?(rest)
     end
 
     def self.how_to_finish?(rest)
       finish_table = create_finish_table
 
       # Is there any elegant implementation?
-      finish_table.select{|item| item.last == rest}.map{|item| item.first.delete_if{|dart| dart == "MISS" } }
+      finish_table.select{|item| item.last == rest}.map{|item| item.first.reject{|dart| dart == "MISS" } }
     end
   end
 end
