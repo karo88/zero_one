@@ -3,10 +3,10 @@ class ZeroOne
     def self.create_finish_table()
       darts = []
 
-      (1..20).each do |i|
-        darts << ["S" + i.to_s, i]
-        darts << ["D" + i.to_s, i * 2]
-        darts << ["T" + i.to_s, i * 3]
+      (1..20).each do |point|
+        darts << ["S" + point.to_s, point]
+        darts << ["D" + point.to_s, point * 2]
+        darts << ["T" + point.to_s, point * 3]
       end
       darts << ["S-BULL", 50]
       darts << ["D-BULL", 50]
