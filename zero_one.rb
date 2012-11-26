@@ -4,8 +4,8 @@ class ZeroOne
       darts = []
 
       {"S" => 1, "D" => 2, "T" => 3}.each do |symbol, factor|
-        (1..20).each do |i|
-          darts << [symbol + i.to_s, i * factor]
+        (1..20).each do |point|
+          darts << [symbol + point.to_s, point * factor]
         end
       end
       darts << ["S-BULL", 50]
